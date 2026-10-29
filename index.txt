@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тестовое окружение</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 28px;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+        }
+        .env-badge {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .widget-placeholder {
+            border: 2px dashed #d0d5dd;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 200px;
+            background: #fafbfc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .widget-placeholder .label {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .widget-placeholder .divider {
+            width: 60px;
+            height: 2px;
+            background: #e0e4eb;
+            margin: 10px auto;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #f59e0b;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="env-badge">🧪 STAGING HU-LI WIDGET</span>
+        <h1>Тестовое окружение</h1>
+        <p>Страница создана для тестирования работы виджета в staging-окружении</p>
+        <div class="widget-placeholder" id="widget-container">
+            <span class="label">⬇️ Виджет загружается...</span>
+            <div class="divider"></div>
+            <span style="font-size: 13px; color: #aaa;">Подождите несколько секунд</span>
+        </div>
+    </div>
+
+    <script>
+        (function(w, d, s, o, f, js, fjs) {
+            w[o] = w[o] || function() {
+                (w[o].q = w[o].q || []).push(arguments)
+            };
+            js = d.createElement(s);
+            fjs = d.getElementsByTagName(s)[0];
+            js.id = o;
+            js.src = f;
+            js.async = 1;
+            fjs.parentNode.insertBefore(js, fjs);
+        }(window, document, 'script', '_hw', 'https://widget-stage.hu-li.com/loader/loader.js'));
+
+        _hw('init', {
+            agentId: '380c703f-a2e5-40f3-adf5-35e3117c0de9',
+        });
+    </script>
+
+    <script>
+        setTimeout(function() {
+            const container = document.getElementById('widget-container');
+            if (container) {
+                container.innerHTML = `
+                    <span class="label">✅ Виджет загружен</span>
+                    <div class="divider"></div>
+                    <span style="font-size: 14px; color: #b45309;">
+                        <span class="status-indicator"></span> Робот работает (staging)
+                    </span>
+                `;
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
